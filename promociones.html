@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promociones Especiales - Aura Floral</title>
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #fff8fb;
+            color: #333;
+        }
+
+        /* BANNER O ENCABEZADO */
+        .promo-header {
+            text-align: center;
+            padding: 50px 20px 30px;
+            background: linear-gradient(135deg, #fce4ec, #fff8fb);
+            border-bottom: 2px dashed #f7b5c8;
+        }
+
+        .promo-badge-top {
+            background: #d97992;
+            color: white;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .promo-header h1 {
+            font-size: 38px;
+            color: #2c2c2c;
+            margin-bottom: 10px;
+        }
+
+        .promo-header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* CONTENEDOR DE PROMOCIONES */
+        .promos-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto 60px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        /* TARJETA DE PROMOCIÓN */
+        .promo-card {
+            background: white;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(217, 121, 146, 0.12);
+            position: relative;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #fce4ec;
+        }
+
+        .promo-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(217, 121, 146, 0.22);
+        }
+
+        /* ETIQUETA DE DESCUENTO */
+        .discount-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #e66b91;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px 14px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            z-index: 2;
+        }
+
+        .promo-img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+        }
+
+        .promo-body {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .promo-body h3 {
+            font-size: 22px;
+            color: #2c2c2c;
+            margin-bottom: 8px;
+        }
+
+        .promo-desc {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 18px;
+            line-height: 1.4;
+        }
+
+        /* ÁREA DE PRECIOS */
+        .price-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .old-price {
+            font-size: 16px;
+            color: #aaa;
+            text-decoration: line-through;
+        }
+
+        .new-price {
+            font-size: 26px;
+            color: #d97992;
+            font-weight: bold;
+        }
+
+        /* TIEMPO LIMITADO */
+        .timer-tag {
+            background: #fff8fb;
+            color: #b85b75;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid #fce4ec;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        /* BOTÓN WHATSAPP */
+        .btn-pedir-promo {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(90deg, #f7b5c8, #f3a4b7);
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            margin-top: auto;
+        }
+
+        .btn-pedir-promo:hover {
+            background: linear-gradient(90deg, #ef8fad, #e66b91);
+        }
+
+        /* ENLACES DE NAVEGACIÓN */
+        .nav-footer {
+            text-align: center;
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn-nav {
+            color: #d97992;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .btn-nav:hover {
+            color: #b85b75;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .promos-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .promos-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BANNER DE ENCABEZADO -->
+    <header class="promo-header">
+        <span class="promo-badge-top">✨ OFERTAS EXCLUSIVAS ✨</span>
+        <h1>OFERTAS DE LA SEMANA</h1>
+        <p>Aprovecha nuestros descuentos especiales en arreglos seleccionados para cada ocasión.</p>
+    </header>
+
+    <!-- GRID DE PROMOCIONES -->
+    <section class="promos-container">
+
+        <!-- Promoción 1 -->
+        <div class="promo-card">
+            <span class="discount-badge">-20% OFF</span>
+            <img src="imagenes/48da08e0034cb7a3004e6c4b25179dbb.jpg" alt="Rosas Románticas" class="promo-img">
+            <div class="promo-body">
+                <h3>Combo Amor & Rosas</h3>
+                <p class="promo-desc">Ramo de 12 rosas rosadas con Gysophila + tarjeta personalizada de regalo.</p>
+                <div class="price-box">
+                    <span class="old-price">900.00 Lps</span>
+                    <span class="new-price">810.00 Lps</span>
+                </div>
+                <div>
+                    <span class="timer-tag"><i class="fa-regular fa-clock"></i> Disponible solo por hoy</span>
+                </div>
+                <a href="#" onclick="pedirPromo('Combo Amor & Rosas', 'Lps 810.00')" class="btn-pedir-promo">
+                    <i class="fa-brands fa-whatsapp"></i> PEDIR ESTA OFERTA
+                </a>
+            </div>
+        </div>
+
+        <!-- Promoción 2 -->
+        <div class="promo-card">
+            <span class="discount-badge">-15% OFF</span>
+            <img src="imagenes/59c5ddb3ae8787e5022bb68b9a07e4ea.jpg" alt="Caja de Girasoles" class="promo-img">
+            <div class="promo-body">
+                <h3>Caja de girasoles</h3>
+                <p class="promo-desc">Arreglo de girasoles en caja + Rosas rojas.</p>
+                <div class="price-box">
+                    <span class="old-price">1000.00 Lps</span>
+                    <span class="new-price">850.25 Lps</span>
+                </div>
+                <div>
+                    <span class="timer-tag"><i class="fa-regular fa-clock"></i> Promoción del Mes solo por hoy</span>
+                </div>
+                <a href="#" onclick="pedirPromo('Caja Sol de Alegría', '850.25 Lps')" class="btn-pedir-promo">
+                    <i class="fa-brands fa-whatsapp"></i> PEDIR ESTA OFERTA
+                </a>
+            </div>
+        </div>
+
+        <!-- Promoción 3 -->
+        <div class="promo-card">
+            <span class="discount-badge">2x1</span>
+            <img src="imagenes/adffed44c500b5b890dcc09184bc1dac.jpg" alt="Dúo Tulipanes" class="promo-img">
+            <div class="promo-body">
+                <h3>Dúo Elegancia Tulipán</h3>
+                <p class="promo-desc">Lleva dos ramos de tulipanes tamaño estandar por el precio de uno. Ideal para regalar.</p>
+                <div class="price-box">
+                    <span class="old-price">1900.00 Lps</span>
+                    <span class="new-price">950.00 Lps</span>
+                </div>
+                <div>
+                    <span class="timer-tag"><i class="fa-regular fa-clock"></i> Solo este Fin de Semana</span>
+                </div>
+                <a href="#" onclick="pedirPromo('Dúo Elegancia Tulipán', '950.00 Lps')" class="btn-pedir-promo">
+                    <i class="fa-brands fa-whatsapp"></i> PEDIR ESTA OFERTA
+                </a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- NAVEGACIÓN INFERIOR -->
+    <div class="nav-footer">
+        <a href="index.html" class="btn-nav"><i class="fa-solid fa-arrow-left"></i> Volver al Inicio</a>
+        <a href="local.html" class="btn-nav"><i class="fa-solid fa-location-dot"></i> Visitar Local</a>
+    </div>
+
+    <script>
+        function pedirPromo(nombrePromo, precio) {
+            // Reemplaza por tu número de WhatsApp real con código de país
+            const numeroWhatsApp = "+50493888288";
+            
+            const mensaje = `Hola, quiero aprovechar la promoción de *${nombrePromo}* por el precio especial de *${precio}*. ¿Está disponible?`;
+            
+            const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+            
+            window.open(url, '_blank');
+        }
+    </script>
+
+</body>
+</html>

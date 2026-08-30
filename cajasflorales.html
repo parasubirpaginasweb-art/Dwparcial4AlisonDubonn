@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - Aura Floral</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:#fff8fb;
+        }
+
+        .catalogo{
+            width:90%;
+            margin:auto;
+            padding:40px 0;
+        }
+
+        .catalogo h2{
+            text-align:center;
+            font-size:38px;
+            color:#2c2c2c;
+        }
+
+        .catalogo p{
+            text-align:center;
+            color:#666;
+            margin-top:10px;
+            margin-bottom:35px;
+        }
+
+        .contenedor{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:25px;
+        }
+
+        .card{
+            background:white;
+            border-radius:18px;
+            overflow:hidden;
+            box-shadow:0 8px 20px rgba(0,0,0,.10);
+            transition:.4s;
+            position:relative;
+        }
+
+        .card:hover{
+            transform:translateY(-8px);
+        }
+
+        .card img{
+            width:100%;
+            height:220px;
+            object-fit:cover;
+        }
+
+        .etiqueta{
+            position:absolute;
+            top:15px;
+            right:15px;
+            background:#d97992;
+            color:white;
+            padding:6px 12px;
+            border-radius:20px;
+            font-size:12px;
+            font-weight:bold;
+        }
+
+        .info{
+            padding:20px;
+            text-align:center;
+        }
+
+        .info h3{
+            font-size:28px;
+            color:#2d2d2d;
+        }
+
+        .info p{
+            margin:12px 0;
+            color:#777;
+            font-size:15px;
+        }
+
+        .info h4{
+            color:#d97992;
+            margin-bottom:18px;
+            font-size:22px;
+        }
+
+        button{
+            width:100%;
+            padding:13px;
+            border:none;
+            border-radius:30px;
+            background:linear-gradient(90deg,#f7b5c8,#f3a4b7);
+            color:white;
+            font-weight:bold;
+            cursor:pointer;
+            transition:.3s;
+        }
+
+        button:hover{
+            background:linear-gradient(90deg,#ef8fad,#e66b91);
+        }
+
+        /* Enlace de texto plano rosado y tamaño compacto */
+        .contenedor-volver {
+            text-align: center;
+            margin-top: 45px;
+            margin-bottom: 20px;
+        }
+
+        .enlace-volver {
+            text-decoration: none;
+            color: #d97992;
+            font-size: 16px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .enlace-volver:hover {
+            color: #b5526d;
+            transform: translateX(-3px);
+        }
+
+        /* Tablets */
+        @media(max-width:992px){
+            .contenedor{
+                grid-template-columns:repeat(2,1fr);
+            }
+        }
+
+        /* Celulares */
+        @media(max-width:600px){
+            .contenedor{
+                grid-template-columns:1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<section class="catalogo">
+
+    <h2>VARIEDAD DE CAJAS FLORALES</h2>
+    <p>Haz clic sobre mas informacion para escoger el tuyo o puedes personalizarlo.</p>
+
+    <div class="contenedor">
+
+        <!-- Tarjeta 1 -->
+        <div class="card">
+            <img src="imagenes/0dd3728b169fbca0d9aae35e2ff2c069.jpg" alt="Rosas">
+            <span class="etiqueta">Amor & Romance</span>
+            <div class="info">
+                <h3>Rosas</h3>
+                <p>Elegante caja con rosas frecas,ideal para expresar amor y admiracion</p>
+                <h4>Desde 850.00 Lps</h4>
+                <button onclick="irAWhatsApp('Rosas')">MAS INFORMACIÓN</button>
+            </div>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="card">
+            <img src="imagenes/6e4259958fe18e94d9d933c84b600909.jpg" alt="Tulipanes">
+            <span class="etiqueta">Elegancia</span>
+            <div class="info">
+                <h3>Tulipanes</h3>
+                <p>Un delicado arreglo con tulipanes que transmiten elegancia y alegria</p>
+                <h4>Desde 950.00 Lps</h4>
+                <button onclick="irAWhatsApp('Tulipanes')">MAS INFORMACIÓN</button>
+            </div>
+        </div>
+
+        <!-- Tarjeta 3 -->
+        <div class="card">
+            <img src="imagenes/71f9a07bde976063c7620f6f3a735f6c.jpg" alt="Girasoles">
+            <span class="etiqueta">Alegria</span>
+            <div class="info">
+                <h3>Girasoles</h3>
+                <p>Un detalle lleno de luz y energia para alegrar cualquier ocasion </p>
+                <h4>Desde 800.00 Lps</h4>
+                <button onclick="irAWhatsApp('Girasoles')">MAS INFORMACIÓN</button>
+            </div>
+        </div>
+
+        <!-- Tarjeta 4 -->
+        <div class="card">
+            <img src="imagenes/6a2cfb88afa5f424fd775eb7da10315b.jpg" alt="Gerberas">
+            <span class="etiqueta">Amistad & Romance</span>
+            <div class="info">
+                <h3>Gerberas</h3>
+                <p>Colores vibrantes que llenan de felicidad cada momento especial</p>
+                <h4>Desde 750.00 Lps</h4>
+                <button onclick="irAWhatsApp('Gerberas')">MAS INFORMACIÓN</button>
+            </div>
+        </div>
+
+        <!-- Tarjeta 5 -->
+        <div class="card">
+            <img src="imagenes/a30d978fac9e521535408614eb532f60.jpg" alt="Hortensias">
+            <span class="etiqueta">Sofisticado</span>
+            <div class="info">
+                <h3>Hortensias</h3>
+                <p>Un regalo sofisticado con un toque de frescura y delicadeza</p>
+                <h4>Desde 980.00 Lps</h4>
+                <button onclick="irAWhatsApp('Hortensias')">MAS INFORMACIÓN</button>
+            </div>
+        </div>
+
+        <!-- Tarjeta 6 -->
+        <div class="card">
+            <img src="imagenes/775b0f43b9a78517dfc5e7cc212e3a6e.jpg" alt="Lirios">
+            <span class="etiqueta">Pureza</span>
+            <div class="info">
+                <h3>Lirios</h3>
+                <p>Belleza y aroma en una presentacion elegante y exclusiva</p>
+                <h4>Desde 1,000.00 Lps</h4>
+                <button onclick="irAWhatsApp('Lirios')">MAS INFORMACIÓN</button>
+            </div>
+        </div>
+
+        <!-- Tarjeta 7 -->
+        <div class="card">
+            <img src="imagenes/06aa44a62759bf81ee7d084fa5da70bd.jpg" alt="Orquídeas">
+            <span class="etiqueta">Exclucivo & Unico</span>
+            <div class="info">
+                <h3>Orquideas </h3>
+                <p>Un regalo premiun para sorprender con distincion y estilo</p>
+                <h4>Desde 1,500.00 Lps</h4>
+                <button onclick="irAWhatsApp('Orquídeas')">MAS INFORMACIÓN</button>
+            </div>
+        </div>
+
+        <!-- Tarjeta 8 -->
+        <div class="card">
+            <img src="imagenes/3a634408a231c4c9b499fa54ba0b217e.jpg" alt="Margaritas">
+            <span class="etiqueta">Clasico & Unico</span>
+            <div class="info">
+                <h3>Margaritas</h3>
+                <p>Combinacion de flores frecas en una hermosa caja decorativa</p>
+                <h4>Desde 900.00 Lps</h4>
+                <button onclick="irAWhatsApp('Margaritas')">MAS INFORMACIÓN</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Enlace Volver a la pagina -->
+    <div class="contenedor-volver">
+        <a href="index.html" class="enlace-volver">&larr; Volver a la pagina</a>
+    </div>
+
+</section>
+
+<script>
+    function irAWhatsApp(producto) {
+        const numeroWhatsApp = "50493888288"; 
+        const mensaje = `Hola, me interesa obtener más información y ver precios del arreglo de *${producto}*.`;
+        const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+        window.open(url, '_blank');
+    }
+</script>
+
+</body>
+</html>

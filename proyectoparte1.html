@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="es">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Aura Floral | Catálogo y Colecciones</title>  
+    
+    <!-- Google Fonts -->  
+    <link rel="preconnect" href="https://fonts.googleapis.com">  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">  
+
+    <!-- Bootstrap 5.3.3 CSS -->  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">  
+
+    <!-- Bootstrap Icons -->  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">  
+
+    <!-- ======= SWEETALERT2 CSS & JS ======= -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>  
+        :root {  
+            --pink-bg: #fcf7f7;             
+            --pink-card-bg: #fbf0f0;        
+            --coral-primary: #f28b82;       
+            --coral-hover: #e0786f;         
+            --badge-gold: #e8b98a;          
+            --dark-text: #4a4443;           
+            --muted-text: #9e9391;          
+            
+            --font-heading: 'Playfair Display', serif;  
+            --font-body: 'Poppins', sans-serif;  
+        }  
+
+        body {  
+            font-family: var(--font-body);  
+            color: var(--dark-text);  
+            background-color: var(--pink-bg);
+        }  
+
+        h1, h2, h3, h4, h5, .brand-logo {  
+            font-family: var(--font-heading);  
+            letter-spacing: 0.3px;
+        }  
+
+        /* NAV BAR ESTILO MINIMALISTA */  
+        .navbar-custom, .navbar-pastel {  
+            background-color: #ffffff !important;  
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid #f2e6e6;
+            padding: 15px 0;
+        }  
+
+        .brand-logo {  
+            color: var(--dark-text) !important;  
+            font-size: 1.6rem;  
+            font-weight: 600;
+            text-decoration: none;
+        }  
+
+        .nav-link-top {
+            color: var(--dark-text) !important;
+            font-weight: 400;
+            font-size: 0.9rem;
+            margin: 0 6px;
+            padding: 8px 18px !important;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link-custom {
+            color: #6c757d !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: none;
+            padding: 8px 22px !important;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-link-custom:hover {
+            color: var(--coral-primary) !important;
+        }
+
+        .nav-link-custom.active {
+            background-color: #fcebee;
+            color: #d88390 !important;
+        }
+
+        .nav-link-top:hover, .nav-link-top.active {
+            background-color: var(--pink-card-bg);
+            color: var(--coral-primary) !important;
+        }
+
+        .btn-cart-nav {
+            background-color: var(--coral-primary);
+            color: #ffffff !important;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 20px !important;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(242, 139, 130, 0.25);
+        }
+
+        .btn-cart-nav:hover {
+            background-color: var(--coral-hover);
+            transform: translateY(-1px);
+        }
+
+        /* MENÚ LATERAL */  
+        .offcanvas-rosa {  
+            background-color: #ffffff !important;  
+            color: var(--dark-text);
+            width: 340px !important; 
+            max-width: 85vw;
+            border-right: 1px solid #f2e6e6;
+        }  
+
+        .guide-step-mini { display: flex; align-items: flex-start; margin-bottom: 20px; }
+        .guide-step-mini i { font-size: 1.3rem; margin-right: 14px; color: var(--coral-primary); margin-top: 2px; }
+        .guide-step-title-mini { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; color: var(--dark-text); }
+        .guide-step-desc-mini { font-size: 0.82rem; color: var(--muted-text); margin-bottom: 0; line-height: 1.4; }
+
+        /* CARRUSEL HERO */  
+        #heroCarousel {
+            padding: 30px 0;
+        }
+        .carousel-inner {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(242, 139, 130, 0.12);
+        }
+        .carousel-img { 
+            height: 52vh; 
+            min-height: 380px; 
+            object-fit: cover; 
+            filter: none;
+        }  
+        .overlay { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.35) 45%, rgba(255, 255, 255, 0) 80%); 
+            z-index: 1; 
+        }  
+        .carousel-caption { 
+            z-index: 2; 
+            color: var(--dark-text);
+            text-shadow: none;
+            text-align: left;
+            left: 7%;
+            right: 45%;
+            top: 50%;
+            transform: translateY(-50%);
+            bottom: auto;
+            padding: 0;
+        }  
+        .carousel-caption h2 {
+            color: var(--dark-text);
+            font-weight: 700;
+            font-size: 2.8rem;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+        .carousel-caption p {
+            color: #4a4443;
+            font-size: 1.05rem;
+            font-weight: 400;
+            margin-bottom: 22px;
+        }
+        .btn-hero {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--coral-primary);
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 10px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(242, 139, 130, 0.3);
+        }
+        .btn-hero:hover {
+            background-color: var(--coral-hover);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(242, 139, 130, 0.4);
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: rgba(255, 255, 255, 0.8);
+            background-size: 50%;
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            filter: invert(1) grayscale(100%);
+        }
+
+        @media (max-width: 768px) {
+            .carousel-caption {
+                right: 7%;
+                text-align: center;
+            }
+            .carousel-caption h2 {
+                font-size: 1.8rem;
+            }
+            .overlay {
+                background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.5) 100%);
+            }
+        }
+
+        /* CATÁLOGO */  
+        .section-title { 
+            color: var(--dark-text); 
+            font-weight: 600; 
+            font-size: 2.2rem;
+        }  
+        
+        .collection-section-bg {
+            background-color: var(--pink-card-bg);
+            border-radius: 20px;
+            padding: 50px 30px;
+            border: 1px solid #f5e1e1;
+        }
+
+        .collection-card {  
+            border-radius: 12px !important;  
+            overflow: hidden;
+            background-color: #ffffff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;  
+            cursor: pointer;
+            border: none !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+        }  
+
+        .collection-card:hover {  
+            transform: translateY(-5px);  
+            box-shadow: 0 12px 25px rgba(242, 139, 130, 0.15) !important;  
+        }  
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--badge-gold);
+            color: #ffffff;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            padding: 3px 10px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .btn-primary-custom {  
+            background-color: var(--coral-primary);  
+            border: none;  
+            color: #ffffff;  
+            font-weight: 500;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 20px;  
+            padding: 8px 20px;
+            box-shadow: 0 4px 10px rgba(242, 139, 130, 0.2);
+            transition: all 0.3s ease;  
+        }  
+
+        .btn-primary-custom:hover {  
+            background-color: var(--coral-hover);  
+            color: #fff;  
+            transform: translateY(-1px);  
+            box-shadow: 0 6px 15px rgba(242, 139, 130, 0.3);
+        }  
+
+        /* MODAL PERSONALIZADO */
+        .modal-custom .modal-content {
+            border-radius: 20px;
+            border: none;
+            background-color: #ffffff;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .modal-custom .modal-header {
+            border-bottom: none;
+            padding: 28px 28px 10px 28px;
+        }
+
+        .product-modal-img {
+            width: 100%;
+            height: 100%;
+            max-height: 420px;
+            min-height: 320px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(242, 139, 130, 0.1);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .size-option {
+            border: 1px solid #f2e6e6;
+            border-radius: 14px;
+            padding: 12px 18px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .size-option:hover { border-color: var(--coral-primary); background-color: var(--pink-bg); }
+        .size-option.active { border-color: var(--coral-primary); background-color: var(--pink-card-bg); box-shadow: 0 4px 12px rgba(242, 139, 130, 0.1); }
+        .size-option input[type="radio"] { accent-color: var(--coral-primary); transform: scale(1.1); }
+
+        .price-text {
+            color: var(--coral-primary) !important;
+            font-family: var(--font-heading);
+            font-weight: 600;
+        }
+
+        /* FOOTER CON EL TONO CAFÉ OSCURO / MARRÓN DE LA IMAGEN */
+        .footer-custom { 
+            background-color: #382c2a; 
+            color: #ffffff !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }  
+
+        .footer-custom .brand-logo,
+        .footer-custom h4,
+        .footer-custom p {
+            color: #ffffff !important;
+        }
+
+        .footer-custom .text-muted {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+    </style>  
+</head>  
+
+<body>  
+
+    <!-- ======= BARRA DE NAVEGACIÓN ======= -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <button class="btn me-3 p-0 border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral">
+                    <i class="bi bi-list fs-2 text-dark"></i>
+                </button>
+
+                <a class="brand-logo d-flex align-items-center gap-2" href="imagenes/WhatsApp Image 2026-08-03 at 2.41.23 PM.jpeg">
+                    <img src="imagenes/WhatsApp Image 2026-08-03 at 2.41.23 PM.jpeg" alt="Aura Floral Logo" width="70" height="70" class="rounded-circle">
+                    <span>Aura Floral</span>
+                </a>
+            </div>
+
+            <div class="d-flex align-items-center gap-2">
+                <div class="d-none d-md-flex align-items-center me-2">
+                    <a class="nav-link-top" href="index.html"><i class="bi bi-house-door me-1"></i> Inicio</a>
+                    <a class="nav-link-top active" href="proyectoparte1.html"><i class="bi bi-grid me-1"></i> Catálogo</a>
+                    <a class="nav-link-custom" href="contactoproyecto.html"><i class="bi bi-envelope me-1"></i>Contacto</a>
+                    <a class="nav-link-top" href="contactomasinfo.html"><i class="bi bi-info-circle me-1"></i> Más Información</a>
+                </div>
+
+                <a href="carrito.html" class="btn btn-cart-nav rounded-pill px-3 py-1 d-flex align-items-center fw-medium position-relative">
+                    <i class="bi bi-cart3 me-2 fs-5"></i>
+                    <span>Carrito</span>
+                    <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display: none;">0</span>
+                </a>
+            </div>
+        </div>  
+    </nav>  
+
+    <!-- ======= MENÚ LATERAL ======= -->  
+    <div class="offcanvas offcanvas-start offcanvas-rosa" tabindex="-1" id="menuLateral">  
+        <div class="offcanvas-header border-bottom border-danger border-opacity-10">  
+            <h5 class="offcanvas-title fw-bold text-dark d-flex align-items-center">  
+                <img src="imagenes/WhatsApp Image 2026-07-27 at 2.13.11 PM.jpeg" alt="Logo" width="35" height="35" class="me-2 rounded-circle shadow-sm">  
+                Aura Floral  
+            </h5>  
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>  
+        </div>  
+        <div class="offcanvas-body">  
+            <div class="pt-2">
+                <div class="text-center mb-4">
+                    <i class="bi bi-bag-check display-6" style="color: var(--coral-primary);"></i>
+                    <h5 class="fw-bold text-dark mt-2 mb-1" style="font-size: 1.1rem;">ASÍ FLORECE TU PEDIDO</h5>
+                    <span class="badge px-3 py-1 rounded-pill" style="background-color: var(--pink-card-bg); color: var(--coral-primary); font-size: 0.7rem;">GUÍA DE COMPRA</span>
+                </div>
+                <div class="guide-step-mini"><i class="bi bi-flower2"></i><div><div class="guide-step-title-mini">Elige Tu Ramo</div><p class="guide-step-desc-mini">Explora y selecciona tu diseño favorito.</p></div></div>
+                <div class="guide-step-mini"><i class="bi bi-palette"></i><div><div class="guide-step-title-mini">Personalización</div><p class="guide-step-desc-mini">Selecciona el tamaño ideal e indica tu dedicatoria.</p></div></div>
+                <div class="guide-step-mini"><i class="bi bi-credit-card"></i><div><div class="guide-step-title-mini">Confirmación</div><p class="guide-step-desc-mini">Abona el 50% para agendar la fecha de entrega.</p></div></div>
+            </div>
+        </div>  
+    </div>  
+
+    <!-- ======= CARRUSEL HERO ======= -->  
+    <div class="container">
+        <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">  
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            </div>
+
+            <div class="carousel-inner">  
+                <div class="carousel-item active" data-bs-interval="4000">  
+                    <div class="overlay"></div>  
+                    <img src="imagenes/cc09ef5ba6e587a57e865c273f95218a.jpg" class="d-block w-100 carousel-img" alt="Diseños Exclusivos">  
+                    <div class="carousel-caption">  
+                        <h2>Diseños Exclusivos</h2>  
+                        <p>Arreglos florales hechos con amor para momentos inolvidables.</p>  
+                        <a href="#catalogo" class="btn-hero">Explorar Catálogo <i class="bi bi-arrow-right ms-2"></i></a>
+                    </div>  
+                </div>  
+
+                <div class="carousel-item" data-bs-interval="4000">  
+                    <div class="overlay"></div>  
+                    <img src="imagenes/a6368d937a1e5d172b9b13b0d3877fa5.jpg" class="d-block w-100 carousel-img" alt="Elegancia Natural">  
+                    <div class="carousel-caption">  
+                        <h2>Elegancia Natural</h2>  
+                        <p>Encuentra las flores más frescas y elegantes para sorprender hoy.</p>  
+                        <a href="#catalogo" class="btn-hero">Ver Arreglos <i class="bi bi-arrow-right ms-2"></i></a>
+                    </div>  
+                </div>  
+            </div>  
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>  
+    </div>
+
+    <!-- ======= CATÁLOGO DE PRODUCTOS ======= -->  
+    <section id="catalogo" class="container my-5 py-2">  
+        <div class="collection-section-bg">
+            <div class="text-center mb-5">  
+                <h2 class="display-5 section-title">Nuestras Colecciones</h2>  
+                <p class="text-muted mt-2" style="color: var(--muted-text) !important;">Haz clic sobre cualquier cuadro para personalizar su tamaño, precio y ver la imagen correspondiente.</p>  
+            </div>  
+
+            <div class="row g-4">  
+                <!-- 1. Rosas Variedad -->  
+                <div class="col-md-6 col-lg-4">  
+                    <div class="card border-0 collection-card h-100 position-relative" onclick="abrirModalProducto('Rosas Variedad', 'imagenes/Rosas2.jpg', 'imagenes/Rsas1 2026-07-30 at 6.18.30 PM.jpeg', 'imagenes/img_0925-scaled.webp', 650, 1250, 1700)">  
+                        <span class="card-badge">Primavera</span>
+                        <img src="imagenes/Rosas2.jpg" class="card-img-top" alt="Rosas" style="height: 240px; object-fit: cover;">  
+                        <div class="card-body p-4 text-center d-flex flex-column justify-content-between">  
+                            <div>
+                                <h4 class="fw-bold mt-1 mb-1">Rosas</h4>  
+                                <p class="text-muted small mb-2">Haz clic para personalizar opciones.</p>  
+                            </div>
+                            <div>
+                                <p class="fw-bold price-text fs-5 mb-3">Desde Lps 650.00</p>
+                                <button class="btn btn-primary-custom w-100">Ver Precios</button>  
+                            </div>
+                        </div>  
+                    </div>  
+                </div>  
+
+                <!-- 2. Tulipanes Elegantes -->  
+                <div class="col-md-6 col-lg-4">  
+                    <div class="card border-0 collection-card h-100 position-relative" onclick="abrirModalProducto('Tulipanes Elegantes', 'imagenes/WhatsApp 2026-07-30 at 6.55.42 PM.jpeg', 'imagenes/Wh 2026-07-30 at 6.55.43 PM.jpeg', 'imagenes/2026-07-30 at 6.55.42 PM.jpeg', 800, 1150, 1550)">  
+                        <span class="card-badge">Especial</span>
+                        <img src="imagenes/WhatsApp 2026-07-30 at 6.55.42 PM.jpeg" class="card-img-top" alt="Tulipanes" style="height: 240px; object-fit: cover;">  
+                        <div class="card-body p-4 text-center d-flex flex-column justify-content-between">  
+                            <div>
+                                <h4 class="fw-bold mt-1 mb-1">Tulipanes</h4>  
+                                <p class="text-muted small mb-2">Elegancia refinada en tonos vivos.</p>  
+                            </div>
+                            <div>
+                                <p class="fw-bold price-text fs-5 mb-3">Desde Lps 800.00</p>
+                                <button class="btn btn-primary-custom w-100">Ver Precios</button>  
+                            </div>
+                        </div>  
+                    </div>  
+                </div>  
+
+                <!-- 3. Girasoles Radiantes -->  
+                <div class="col-md-6 col-lg-4">  
+                    <div class="card border-0 collection-card h-100 position-relative" onclick="abrirModalProducto('Girasoles Radiantes', 'imagenes/76eebc2d9a66dc0d7ed88e1fe8979d05.jpg', 'imagenes/girasol.jpg', 'imagenes/f3364f919e1eab7cacb0177abe8720f8.jpg', 700, 950, 1300)">  
+                        <span class="card-badge">Elegancia</span>
+                        <img src="imagenes/76eebc2d9a66dc0d7ed88e1fe8979d05.jpg" class="card-img-top" alt="Girasoles" style="height: 240px; object-fit: cover;"> 
+                        <div class="card-body p-4 text-center d-flex flex-column justify-content-between">  
+                            <div>
+                                <h4 class="fw-bold mt-1 mb-1">Girasoles</h4>  
+                                <p class="text-muted small mb-2">Gran presencia e aroma inigualable.</p>  
+                            </div>
+                            <div>
+                                <p class="fw-bold price-text fs-5 mb-3">Desde Lps 700.00</p>
+                                <button class="btn btn-primary-custom w-100">Ver Precios</button>  
+                            </div>
+                        </div>  
+                    </div>  
+                </div>  
+
+                <!-- 4. Gerberas Encantadoras -->  
+                <div class="col-md-6 col-lg-4">  
+                    <div class="card border-0 collection-card h-100 position-relative" onclick="abrirModalProducto('Gerberas Encantadoras', 'imagenes/WhatsApp Imagen 2026-07-30 at 6.41.05 PM.jpeg', 'imagenes/WhatsApp Image 2026-07-30 at 6.41.05 PM.jpeg', 'imagenes/WhatsApp Ima 2026-07-30 at 6.41.06 PM.jpeg', 600, 750, 980)">  
+                        <span class="card-badge">Romance</span>
+                        <img src="imagenes/WhatsApp Imagen 2026-07-30 at 6.41.05 PM.jpeg" class="card-img-top" alt="Gerberas" style="height: 240px; object-fit: cover;">  
+                        <div class="card-body p-4 text-center d-flex flex-column justify-content-between">  
+                            <div>
+                                <h4 class="fw-bold mt-1 mb-1">Gerberas</h4>  
+                                <p class="text-muted small mb-2">Gerberas elegantes y delicadas para enamorar.</p>  
+                            </div>
+                            <div>
+                                <p class="fw-bold price-text fs-5 mb-3">Desde Lps 600.00</p>
+                                <button class="btn btn-primary-custom w-100">Ver Precios</button>  
+                            </div>
+                        </div>  
+                    </div>  
+                </div>  
+
+                <!-- 5. Hortensias Pastel -->  
+                <div class="col-md-6 col-lg-4">  
+                    <div class="card border-0 collection-card h-100 position-relative" onclick="abrirModalProducto('Hortensias Pastel', 'imagenes/WhatsApp Image2026-07-30 at 6.44.53 PM.jpeg', 'imagenes/WhatsApp Imagennn2026-07-30 at 6.44.54 PM.jpeg', 'imagenes/WhatsApp Imagen 2026-07-30 at 6.44.53 PM.jpeg', 950, 1150, 1400)">  
+                        <span class="card-badge">Hortensias</span>
+                        <img src="imagenes/WhatsApp Image2026-07-30 at 6.44.53 PM.jpeg" class="card-img-top" alt="Hortensias" style="height: 240px; object-fit: cover;">  
+                        <div class="card-body p-4 text-center d-flex flex-column justify-content-between">  
+                            <div>
+                                <h4 class="fw-bold mt-1 mb-1">Hortensias</h4>  
+                                <p class="text-muted small mb-2">Arreglos alegres y festivos.</p>  
+                            </div>
+                            <div>
+                                <p class="fw-bold price-text fs-5 mb-3">Desde Lps 950.00</p>
+                                <button class="btn btn-primary-custom w-100">Ver Precios</button>  
+                            </div>
+                        </div>  
+                    </div>  
+                </div>  
+
+                <!-- 6. Lirios Reales -->  
+                <div class="col-md-6 col-lg-4">  
+                    <div class="card border-0 collection-card h-100 position-relative" onclick="abrirModalProducto('Lirios Reales', 'imagenes/WhatsApp Ima2026-07-30 at 6.49.49 PM.jpeg', 'imagenes/WhatsApp Image 2026-07-30 at 6.18.26 PM.jpeg', 'imagenes/WhatsApp Image2026-07-30 at 6.49.49 PM.jpeg', 780, 1100, 1450)">  
+                        <span class="card-badge">Aniversarios</span>
+                        <img src="imagenes/WhatsApp Ima2026-07-30 at 6.49.49 PM.jpeg" class="card-img-top" alt="Lirios" style="height: 240px; object-fit: cover;">  
+                        <div class="card-body p-4 text-center d-flex flex-column justify-content-between">  
+                            <div>
+                                <h4 class="fw-bold mt-1 mb-1">Lirios</h4>  
+                                <p class="text-muted small mb-2">Detalles con acabados finos y románticos.</p>  
+                            </div>
+                            <div>
+                                <p class="fw-bold price-text fs-5 mb-3">Desde Lps 780.00</p>
+                                <button class="btn btn-primary-custom w-100">Ver Precios</button>  
+                            </div>
+                        </div>  
+                    </div>  
+                </div>  
+
+                <!-- 7. Ramos Florales Luxe -->  
+                <div class="col-md-6 col-lg-4">  
+                    <div class="card border-0 collection-card h-100 position-relative" onclick="abrirModalProducto('Ramos Florales Luxe', 'imagenes/WhatsApp Image 2026-07-30 at 6.49.49 PM.jpeg', 'imagenes/8b77cc56145755b49a692deb0364b96c.jpg', 'imagenes/WhatsApp Imagen 2026-07-30 at 6.18.28 PM.jpeg', 980, 1350, 1800)">  
+                        <span class="card-badge">Boxes</span>
+                        <img src="imagenes/WhatsApp Image 2026-07-30 at 6.49.49 PM.jpeg" class="card-img-top" alt="Variedades" style="height: 240px; object-fit: cover;">  
+                        <div class="card-body p-4 text-center d-flex flex-column justify-content-between">  
+                            <div>
+                                <h4 class="fw-bold mt-1 mb-1">Variedades</h4>  
+                                <p class="text-muted small mb-2">Diseños florales de gran volumen y distinción.</p>  
+                            </div>
+                            <div>
+                                <p class="fw-bold price-text fs-5 mb-3">Desde Lps 980.00</p>
+                                <button class="btn btn-primary-custom w-100">Ver Precios</button>  
+                            </div>
+                        </div>  
+                    </div>  
+                </div>  
+
+                <!-- 8. Floreros Especiales -->  
+                <div class="col-md-6 col-lg-4">  
+                    <div class="card border-0 collection-card h-100 position-relative" onclick="abrirModalProducto('Floreros Especiales', 'imagenes/059b8b0d214b857dedf5cb36baf9375b.jpg', 'imagenes/WhatsApp Image2026-07-30 at 6.55.41 PM.jpeg', 'imagenes/e908ba86ed04bca6360e087a806eaea4.jpg', 650, 920, 1250)">  
+                        <span class="card-badge">Combos</span>
+                        <img src="imagenes/059b8b0d214b857dedf5cb36baf9375b.jpg" class="card-img-top" alt="Floreros" style="height: 240px; object-fit: cover;">  
+                        <div class="card-body p-4 text-center d-flex flex-column justify-content-between">  
+                            <div>
+                                <h4 class="fw-bold mt-1 mb-1">Floreros</h4>  
+                                <p class="text-muted small mb-2">Arreglos presentados en bases de vidrio.</p>  
+                            </div>
+                            <div>
+                                <p class="fw-bold price-text fs-5 mb-3">Desde Lps 650.00</p>
+                                <button class="btn btn-primary-custom w-100">Ver Precios</button>  
+                            </div>
+                        </div>  
+                    </div>  
+                </div>  
+
+                <!-- 9. Ramos Mixtos -->  
+                <div class="col-md-6 col-lg-4">  
+                    <div class="card border-0 collection-card h-100 position-relative" onclick="abrirModalProducto('Ramos Mixtos Gratitud', 'imagenes/WhatsApp Imagenn 2026-07-30 at 6.18.28 PM.jpeg', 'imagenes/WhatsApp Imagen 2026-07-30 at 6.18.27 PM.jpeg', 'imagenes/WhatsApp Imagem 2026-07-30 at 6.18.27 PM.jpeg', 580, 850, 1150)">  
+                        <span class="card-badge">Agradecimiento</span>
+                        <img src="imagenes/WhatsApp Imagenn 2026-07-30 at 6.18.28 PM.jpeg" class="card-img-top" alt="Ramos Mixtos" style="height: 240px; object-fit: cover;">  
+                        <div class="card-body p-4 text-center d-flex flex-column justify-content-between">  
+                            <div>
+                                <h4 class="fw-bold mt-1 mb-1">Ramos Mixtos</h4>  
+                                <p class="text-muted small mb-2">Ramos sutiles para decir gracias de corazón.</p>  
+                            </div>
+                            <div>
+                                <p class="fw-bold price-text fs-5 mb-3">Desde Lps 580.00</p>
+                                <button class="btn btn-primary-custom w-100">Ver Precios</button>  
+                            </div>
+                        </div>  
+                    </div>  
+                </div>  
+
+            </div>  
+        </div>
+    </section>  
+
+    <!-- ======= MODAL DE DETALLE DEL PRODUCTO ======= -->
+    <div class="modal fade modal-custom" id="modalDetalleProducto" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <span class="badge rounded-pill px-3 py-1 fw-semibold small" style="background-color: var(--pink-card-bg); color: var(--coral-primary);">Detalle del Producto</span>
+                        <h3 class="modal-title fw-bold mt-2" id="modalTituloProducto">Detalle del Arreglo Floral</h3>
+                    </div>
+                    <button type="button" class="btn-close align-self-start" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body p-4 pt-2">
+                    <div class="row g-4 align-items-start">
+                        <div class="col-md-5">
+                            <img id="modalImagenActual" src="" alt="Arreglo Floral" class="product-modal-img">
+                        </div>
+                        <div class="col-md-7">
+                            <h4 id="modalNombreRamo" class="fw-bold mb-1">Nombre del Ramo</h4>
+                            <p class="text-muted small mb-3">Personaliza las opciones y el tamaño ideal para tu encargo:</p>
+
+                            <div class="size-option active" id="optEstandar" onclick="seleccionarOpcion('estandar')">
+                                <div class="d-flex align-items-center me-2">
+                                    <input type="radio" name="tamanoRamo" id="radioEstandar" checked class="me-3">
+                                    <div>
+                                        <div class="fw-bold text-dark">Tamaño Estándar</div>
+                                        <div class="text-muted small">Ideal para un detalle sencillo</div>
+                                    </div>
+                                </div>
+                                <span class="fw-bold fs-5 price-text" id="precioEstandarText">Lps 0.00</span>
+                            </div>
+
+                            <div class="size-option" id="optEspecial" onclick="seleccionarOpcion('especial')">
+                                <div class="d-flex align-items-center me-2">
+                                    <input type="radio" name="tamanoRamo" id="radioEspecial" class="me-3">
+                                    <div>
+                                        <div class="fw-bold text-dark">Tamaño Especial</div>
+                                        <div class="text-muted small">Más volumen y variedad de flores</div>
+                                    </div>
+                                </div>
+                                <span class="fw-bold fs-5 price-text" id="precioEspecialText">Lps 0.00</span>
+                            </div>
+
+                            <div class="size-option" id="optPremium" onclick="seleccionarOpcion('premium')">
+                                <div class="d-flex align-items-center me-2">
+                                    <input type="radio" name="tamanoRamo" id="radioPremium" class="me-3">
+                                    <div>
+                                        <div class="fw-bold text-dark">Edición Premium</div>
+                                        <div class="text-muted small">Presentación deluxe en cristal</div>
+                                    </div>
+                                </div>
+                                <span class="fw-bold fs-5 price-text" id="precioPremiumText">Lps 0.00</span>
+                            </div>
+
+                            <!-- OPCIÓN: DISEÑO PERSONALIZADO QUE REDIRIGE AL FORMULARIO -->
+                            <div class="size-option" id="optPersonalizado" onclick="seleccionarOpcion('personalizado')">
+                                <div class="d-flex align-items-center me-2">
+                                    <input type="radio" name="tamanoRamo" id="radioPersonalizado" class="me-3">
+                                    <div>
+                                        <div class="fw-bold text-dark"><i class="bi bi-palette-fill me-1" style="color: var(--coral-primary);"></i> Diseño Personalizado</div>
+                                        <div class="text-muted small">Completa un formulario para solicitar tu cotización</div>
+                                    </div>
+                                </div>
+                                <span class="fw-bold fs-6" style="color: var(--coral-primary);"><i class="bi bi-file-earmark-text"></i> Solicitud</span>
+                            </div>
+
+                            <!-- BOTÓN DE ACCIÓN -->
+                            <button type="button" id="btnAccionModal" class="btn btn-primary-custom w-100 py-3 mt-3 d-flex align-items-center justify-content-center fs-6" onclick="ejecutarAccionBoton()">
+                                <i class="bi bi-cart-plus-fill me-2 fs-5"></i> Añadir al Carrito
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= FOOTER ORIGINAL ======= -->  
+    <footer class="footer-custom py-5">  
+        <div class="container text-center text-md-start">  
+            <div class="row g-4">  
+                <div class="col-md-6">  
+                    <h4 class="brand-logo mb-3">Aura Floral</h4>  
+                    <p class="small text-muted mb-0">Creando emociones únicas en cada detalle floral.</p>  
+                </div>  
+                <div class="col-md-6 text-md-end">  
+                    <p class="small text-muted mb-0">&copy; 2026 Aura Floral. Todos los derechos reservados.</p>  
+                </div>  
+            </div>  
+        </div>  
+    </footer>  
+
+    <!-- Bootstrap 5.3.3 JS Bundle -->  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>  
+
+    <script>
+        let productoActual = {
+            nombre: '', tamanoSeleccionado: 'Estándar', precioSeleccionado: 0, imagenSeleccionada: '',
+            imgEstandar: '', imgEspecial: '', imgPremium: '', pEstandar: 0, pEspecial: 0, pPremium: 0
+        };
+
+        function abrirModalProducto(nombre, img1, img2, img3, precio1, precio2, precio3) {
+            productoActual.nombre = nombre;
+            productoActual.imgEstandar = img1;
+            productoActual.imgEspecial = img2;
+            productoActual.imgPremium = img3;
+            productoActual.pEstandar = precio1;
+            productoActual.pEspecial = precio2;
+            productoActual.pPremium = precio3;
+
+            document.getElementById('modalNombreRamo').innerText = nombre;
+            document.getElementById('precioEstandarText').innerText = `Lps ${precio1}.00`;
+            document.getElementById('precioEspecialText').innerText = `Lps ${precio2}.00`;
+            document.getElementById('precioPremiumText').innerText = `Lps ${precio3}.00`;
+
+            seleccionarOpcion('estandar');
+            let myModal = new bootstrap.Modal(document.getElementById('modalDetalleProducto'));
+            myModal.show();
+        }
+
+        function seleccionarOpcion(tipo) {
+            document.getElementById('optEstandar').classList.remove('active');
+            document.getElementById('optEspecial').classList.remove('active');
+            document.getElementById('optPremium').classList.remove('active');
+            document.getElementById('optPersonalizado').classList.remove('active');
+
+            let imgElemento = document.getElementById('modalImagenActual');
+
+            // Redirección al formulario personalizado
+            if (tipo === 'personalizado') {
+                window.location.href = `formulario_personalizado.html?producto=${encodeURIComponent(productoActual.nombre)}`;
+                return;
+            }
+
+            if (tipo === 'estandar') {
+                document.getElementById('optEstandar').classList.add('active');
+                document.getElementById('radioEstandar').checked = true;
+                imgElemento.src = productoActual.imgEstandar;
+                productoActual.tamanoSeleccionado = 'Tamaño Estándar';
+                productoActual.precioSeleccionado = productoActual.pEstandar;
+                productoActual.imagenSeleccionada = productoActual.imgEstandar;
+
+            } else if (tipo === 'especial') {
+                document.getElementById('optEspecial').classList.add('active');
+                document.getElementById('radioEspecial').checked = true;
+                imgElemento.src = productoActual.imgEspecial;
+                productoActual.tamanoSeleccionado = 'Tamaño Especial';
+                productoActual.precioSeleccionado = productoActual.pEspecial;
+                productoActual.imagenSeleccionada = productoActual.imgEspecial;
+
+            } else if (tipo === 'premium') {
+                document.getElementById('optPremium').classList.add('active');
+                document.getElementById('radioPremium').checked = true;
+                imgElemento.src = productoActual.imgPremium;
+                productoActual.tamanoSeleccionado = 'Edición Premium';
+                productoActual.precioSeleccionado = productoActual.pPremium;
+                productoActual.imagenSeleccionada = productoActual.imgPremium;
+            }
+        }
+
+        function ejecutarAccionBoton() {
+            confirmarAgregarAlCarrito();
+        }
+
+        function confirmarAgregarAlCarrito() {
+            let carrito = JSON.parse(localStorage.getItem('aura_carrito')) || [];
+            let nombreCompleto = `${productoActual.nombre} (${productoActual.tamanoSeleccionado})`;
+
+            let productoExistente = carrito.find(item => item.nombre === nombreCompleto);
+
+            if (productoExistente) {
+                productoExistente.cantidad += 1;
+            } else {
+                carrito.push({
+                    nombre: nombreCompleto,
+                    precio: productoActual.precioSeleccionado,
+                    imagen: productoActual.imagenSeleccionada,
+                    cantidad: 1
+                });
+            }
+
+            localStorage.setItem('aura_carrito', JSON.stringify(carrito));
+            actualizarContadorCarrito();
+
+            let modalEl = document.getElementById('modalDetalleProducto');
+            let modalInstance = bootstrap.Modal.getInstance(modalEl);
+            if (modalInstance) modalInstance.hide();
+
+            Swal.fire({
+                title: "¡Se agrego con exito!",
+                text: `¡${nombreCompleto} se agregó a tu carrito!`,
+                icon: "success",
+                draggable: true,
+                confirmButtonColor: '#f28b82'
+            });
+        }
+
+        function actualizarContadorCarrito() {
+            let carrito = JSON.parse(localStorage.getItem('aura_carrito')) || [];
+            let totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+            let badge = document.getElementById('cart-count');
+            
+            if (badge) {
+                if (totalItems > 0) {
+                    badge.innerText = totalItems;
+                    badge.style.display = 'inline-block';
+                } else {
+                    badge.style.display = 'none';
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', actualizarContadorCarrito);
+    </script>
+</body>  
+</html>

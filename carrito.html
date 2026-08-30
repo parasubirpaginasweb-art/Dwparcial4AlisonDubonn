@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Floral | Mi Carrito de Compras</title>
+    
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- SweetAlert2 para alertas elegantes -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        :root {
+            --pastel-pink-start: #f7cad0;
+            --pastel-pink-end: #ffb5a7;
+            --pastel-rose: #e8a598;
+            --pastel-cream: #fff0f3;
+            --pink-card-bg: #fce4ec;
+            --pink-border: #f8bbd0;
+            --dark-text: #4a3e3d;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--pastel-cream);
+            color: var(--dark-text);
+        }
+
+        h1, h2, h3, h4, .brand-logo { 
+            font-family: 'Playfair Display', serif; 
+        }
+
+        .navbar-pastel {
+            background: linear-gradient(135deg, var(--pastel-pink-start) 0%, var(--pastel-pink-end) 100%) !important;
+        }
+
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .card-custom {
+            border-radius: 20px;
+            border: 1px solid var(--pink-border);
+            background-color: #ffffff;
+            box-shadow: 0 10px 25px rgba(244, 172, 183, 0.15);
+        }
+
+        .form-control, .form-select {
+            border-radius: 12px;
+            border: 1px solid var(--pink-border);
+            padding: 10px 14px;
+            background-color: #fffafc;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--pastel-rose);
+            box-shadow: 0 0 0 0.25rem rgba(244, 172, 183, 0.3);
+            background-color: #ffffff;
+        }
+
+        .btn-pink {
+            background: linear-gradient(135deg, var(--pastel-pink-start) 0%, var(--pastel-rose) 100%);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-pink:hover {
+            opacity: 0.95;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .badge-custom {
+            background-color: var(--pink-card-bg);
+            color: #c25975;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <nav class="navbar navbar-expand-lg navbar-pastel py-2 mb-4">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand text-white fw-bold brand-logo" href="proyectoparte1.html">
+                <i class="bi bi-arrow-left me-2"></i> Aura Floral
+            </a>
+            <span class="text-white fw-medium">Tu Carrito</span>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO DEL CARRITO -->
+    <div class="container my-5">
+        <h2 class="fw-bold mb-4">Finalizar Pedido 🌸</h2>
+
+        <form id="formCheckout" onsubmit="enviarPedidoWhatsApp(event)">
+            <div class="row g-4">
+                
+                <!-- Columna Izquierda: Productos + Formulario de Datos -->
+                <div class="col-lg-8">
+                    
+                    <!-- 1. Tabla de Productos -->
+                    <div class="card card-custom p-4 mb-4">
+                        <h4 class="fw-bold mb-3"><i class="bi bi-bag-heart me-2 text-danger"></i> Productos Seleccionados</h4>
+                        <hr class="mt-0">
+                        <div id="contenedor-carrito">
+                            <!-- Se llena mediante JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- 2. Formulario de Datos del Pedido -->
+                    <div class="card card-custom p-4">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <h4 class="fw-bold mb-0"><i class="bi bi-card-checklist me-2 text-danger"></i> Datos del Pedido y Entrega</h4>
+                            <span class="badge badge-custom px-3 py-2 rounded-pill">Información Requerida</span>
+                        </div>
+                        <hr class="mt-0">
+
+                        <div class="row g-3">
+                            <!-- Datos Personales -->
+                            <div class="col-md-6">
+                                <label for="nombreCliente" class="form-label fw-medium">Nombre Completo *</label>
+                                <input type="text" class="form-control" id="nombreCliente" placeholder="Ej: Maria Lopez" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="telefonoCliente" class="form-label fw-medium">Teléfono / WhatsApp *</label>
+                                <input type="tel" class="form-control" id="telefonoCliente" placeholder="Ej: 9999-9999" required>
+                            </div>
+
+                            <!-- Logística de Entrega -->
+                            <div class="col-md-6">
+                                <label for="fechaEntrega" class="form-label fw-medium">Fecha Deseada de Entrega *</label>
+                                <input type="date" class="form-control" id="fechaEntrega" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="horarioEntrega" class="form-label fw-medium">Horario Preferido *</label>
+                                <select class="form-select" id="horarioEntrega" required>
+                                    <option value="" selected disabled>Selecciona un rango</option>
+                                    <option value="Mañana (8:00 AM - 12:00 PM)">Mañana (8:00 AM - 12:00 PM)</option>
+                                    <option value="Tarde (1:00 PM - 5:00 PM)">Tarde (1:00 PM - 5:00 PM)</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="direccionEntrega" class="form-label fw-medium">Dirección Completa de Entrega *</label>
+                                <input type="text" class="form-control" id="direccionEntrega" placeholder="Colonia, calle, número de casa o punto de referencia..." required>
+                            </div>
+
+                            <!-- Detalles Especiales del Ramo -->
+                            <div class="col-12">
+                                <label for="tarjetaNota" class="form-label fw-medium">Mensaje para la Tarjeta / Nota Especial</label>
+                                <textarea class="form-control" id="tarjetaNota" rows="2" placeholder="Escribe el mensaje emotivo que irá impreso en la tarjeta del ramo..."></textarea>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="detallesRamo" class="form-label fw-medium">Especificaciones Adicionales del Ramo</label>
+                                <textarea class="form-control" id="detallesRamo" rows="2" placeholder="Colores preferidos de flores, tipo de moño o empaque especial..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Columna Derecha: Resumen Total y Botón de Envío -->
+                <div class="col-lg-4">
+                    <div class="card card-custom p-4 sticky-top" style="top: 90px; z-index: 10;">
+                        <h4 class="fw-bold mb-3">Resumen del Pedido</h4>
+                        <hr class="mt-0">
+                        
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">Subtotal:</span>
+                            <span id="subtotal-text" class="fw-bold">L 0.00</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-muted">Envío:</span>
+                            <span class="text-success fw-bold">Por coordinar</span>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="d-flex justify-content-between fs-4 fw-bold text-danger mb-4">
+                            <span>Total:</span>
+                            <span id="total-text">L 0.00</span>
+                        </div>
+
+                        <button type="submit" class="btn btn-pink w-100 py-3 mb-2 fs-6">
+                            <i class="bi bi-whatsapp me-2 fs-5"></i> Confirmar Pedido por WhatsApp
+                        </button>
+                        
+                        <a href="proyectoparte1.html" class="btn btn-outline-secondary w-100 rounded-pill py-2">
+                            <i class="bi bi-plus-circle me-1"></i> Agregar Más Productos
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function renderizarCarrito() {
+            let carrito = JSON.parse(localStorage.getItem('aura_carrito')) || [];
+            let contenedor = document.getElementById('contenedor-carrito');
+            let subtotal = 0;
+
+            if (carrito.length === 0) {
+                contenedor.innerHTML = `
+                    <div class="text-center py-5">
+                        <i class="bi bi-cart-x display-1 text-muted"></i>
+                        <h4 class="mt-3 text-muted">Tu carrito está vacío</h4>
+                        <a href="proyectoparte1.html" class="btn btn-pink mt-3 px-4">Explorar Catálogo</a>
+                    </div>
+                `;
+                document.getElementById('subtotal-text').innerText = 'L 0.00';
+                document.getElementById('total-text').innerText = 'L 0.00';
+                return;
+            }
+
+            let html = '<div class="table-responsive"><table class="table align-middle mb-0">';
+            html += '<thead><tr><th>Producto</th><th>Precio</th><th class="text-center">Cantidad</th><th>Subtotal</th><th></th></tr></thead><tbody>';
+
+            carrito.forEach((prod, index) => {
+                let itemSubtotal = prod.precio * prod.cantidad;
+                subtotal += itemSubtotal;
+
+                html += `
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="${prod.imagen}" class="cart-item-img me-3" alt="${prod.nombre}">
+                                <span class="fw-semibold">${prod.nombre}</span>
+                            </div>
+                        </td>
+                        <td>L ${prod.precio}.00</td>
+                        <td>
+                            <div class="d-flex align-items-center justify-content-center gap-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary rounded-circle px-2 py-0" onclick="cambiarCantidad(${index}, -1)">-</button>
+                                <span class="fw-bold px-1">${prod.cantidad}</span>
+                                <button type="button" class="btn btn-sm btn-outline-secondary rounded-circle px-2 py-0" onclick="cambiarCantidad(${index}, 1)">+</button>
+                            </div>
+                        </td>
+                        <td class="fw-bold text-danger">L ${itemSubtotal}.00</td>
+                        <td>
+                            <button type="button" class="btn btn-link text-danger p-0" onclick="eliminarProducto(${index})">
+                                <i class="bi bi-trash fs-5"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            html += '</tbody></table></div>';
+            contenedor.innerHTML = html;
+
+            document.getElementById('subtotal-text').innerText = `L ${subtotal}.00`;
+            document.getElementById('total-text').innerText = `L ${subtotal}.00`;
+        }
+
+        function cambiarCantidad(index, cambio) {
+            let carrito = JSON.parse(localStorage.getItem('aura_carrito')) || [];
+            carrito[index].cantidad += cambio;
+
+            if (carrito[index].cantidad <= 0) {
+                carrito.splice(index, 1);
+            }
+
+            localStorage.setItem('aura_carrito', JSON.stringify(carrito));
+            renderizarCarrito();
+        }
+
+        function eliminarProducto(index) {
+            let carrito = JSON.parse(localStorage.getItem('aura_carrito')) || [];
+            carrito.splice(index, 1);
+            localStorage.setItem('aura_carrito', JSON.stringify(carrito));
+            renderizarCarrito();
+        }
+
+        function enviarPedidoWhatsApp(event) {
+            event.preventDefault();
+
+            let carrito = JSON.parse(localStorage.getItem('aura_carrito')) || [];
+            if (carrito.length === 0) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Carrito Vacío',
+                    text: 'Agrega al menos un producto antes de confirmar tu pedido.',
+                    confirmButtonColor: '#e8a598'
+                });
+                return;
+            }
+
+            // 1. Obtener valores del formulario
+            const nombre = document.getElementById('nombreCliente').value;
+            const telefono = document.getElementById('telefonoCliente').value;
+            const fecha = document.getElementById('fechaEntrega').value;
+            const horario = document.getElementById('horarioEntrega').value;
+            const direccion = document.getElementById('direccionEntrega').value;
+            const nota = document.getElementById('tarjetaNota').value || "Sin mensaje especial";
+            const detalles = document.getElementById('detallesRamo').value || "Sin detalles adicionales";
+
+            // 2. Construir lista de productos
+            let listaProductos = "";
+            let total = 0;
+
+            carrito.forEach(p => {
+                let sub = p.precio * p.cantidad;
+                total += sub;
+                listaProductos += `• ${p.nombre} (x${p.cantidad}) - L ${sub}.00\n`;
+            });
+
+            // 3. Formatear el mensaje completo para WhatsApp
+            let mensaje = ` -- NUEVO PEDIDO - AURA FLORAL -- \n\n` +
+                          ` DATOS DEL CLIENTE\n` +
+                          `• Nombre: ${nombre}\n` +
+                          `• Teléfono: ${telefono}\n\n` +
+                          `  DATOS DE ENTREGA\n` +
+                          `• Fecha: ${fecha}\n` +
+                          `• Horario: ${horario}\n` +
+                          `• Dirección: ${direccion}\n\n` +
+                          ` PRODUCTOS DEL PEDIDO\n${listaProductos}\n` +
+                          ` Total a Pagar: L ${total}.00\n\n` +
+                          ` Tarjeta/Nota: ${nota}\n` +
+                          ` Detalles Adicionales: ${detalles}`;
+
+            const numeroWhatsApp = "+50493888288"; // Número configurado para recibir el pedido
+            let url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+
+            // 4. Mostrar alerta y redirigir a WhatsApp
+            Swal.fire({
+                title: "¡Redirigiendo a WhatsApp!",
+                text: "Se abrirá WhatsApp con el resumen completo de tu pedido.",
+                icon: "success",
+                confirmButtonColor: '#f7cad0',
+                confirmButtonText: 'Abrir WhatsApp'
+            }).then(() => {
+                window.open(url, '_blank');
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderizarCarrito);
+    </script>
+</body>
+</html>

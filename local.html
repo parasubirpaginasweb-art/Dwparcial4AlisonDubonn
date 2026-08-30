@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubicación y Contacto - Aura Floral</title>
+    <!-- Iconos de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #fff8fb;
+            color: #333;
+        }
+
+        /* Encabezado Principal */
+        header {
+            text-align: center;
+            padding: 50px 20px 20px 20px;
+        }
+
+        header h1 {
+            font-size: 40px;
+            color: #2c2c2c;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* SECCIÓN DE FOTOS DEL LOCAL */
+        .galeria-local {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto 40px auto;
+        }
+
+        .galeria-local h2 {
+            text-align: center;
+            font-size: 26px;
+            color: #2c2c2c;
+            margin-bottom: 25px;
+        }
+
+        .contenedor-fotos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .foto-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .foto-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .foto-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .foto-card p {
+            text-align: center;
+            padding: 12px;
+            font-size: 14px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        /* Contenedor Principal Info + Mapa */
+        .contacto-seccion {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto 60px auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        /* Tarjeta de Información */
+        .info-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .info-card h2 {
+            font-size: 26px;
+            color: #2c2c2c;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #fce4ec;
+            padding-bottom: 10px;
+        }
+
+        .item-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .item-info i {
+            font-size: 22px;
+            color: #d97992;
+            background: #fce4ec;
+            padding: 14px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .item-info div h3 {
+            font-size: 18px;
+            color: #2d2d2d;
+            margin-bottom: 4px;
+        }
+
+        .item-info div p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Botones de Acción Rápida */
+        .botones-contacto {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn-contacto {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .btn-ws {
+            background: #25d366;
+            color: white;
+        }
+
+        .btn-ws:hover {
+            background: #1ebc57;
+        }
+
+        .btn-mapa {
+            background: linear-gradient(90deg, #f7b5c8, #f3a4b7);
+            color: white;
+        }
+
+        .btn-mapa:hover {
+            background: linear-gradient(90deg, #ef8fad, #e66b91);
+        }
+
+        /* Contenedor del Mapa */
+        .mapa-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            height: 100%;
+            min-height: 450px;
+        }
+
+        .mapa-card iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Enlace de regreso */
+        .regresar-container {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .btn-regresar {
+            color: #d97992;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .btn-regresar:hover {
+            color: #b85b75;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .contenedor-fotos {
+                grid-template-columns: 1fr;
+            }
+            .contacto-seccion {
+                grid-template-columns: 1fr;
+            }
+            .mapa-card {
+                height: 350px;
+            }
+            .botones-contacto {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>VISÍTANOS EN NUESTRO LOCAL</h1>
+        <p>Estamos listos para atenderte y ayudarte a crear el detalle floral perfecto.</p>
+    </header>
+
+    <!-- SECCIÓN DE FOTOS DE TU LOCAL -->
+    <section class="galeria-local">
+        <h2>Conoce Nuestras Instalaciones</h2>
+        <div class="contenedor-fotos">
+            
+            <!-- Foto 1: Fachada o Frente -->
+            <div class="foto-card">
+                <!-- Reemplaza "img/frente-local.jpg" por la ruta de tu foto -->
+                <img src="imagenes/WhatsApp Image 2026-08-04 at 6.20.43 PM.jpeg" alt="Fachada del local">
+                <p>📍 Entrada Principal</p>
+            </div>
+
+            <!-- Foto 2: Interior -->
+            <div class="foto-card">
+                <!-- Reemplaza "img/interior-local.jpg" por la ruta de tu foto -->
+                <img src="imagenes/fbe50cd41686cad76c61ff688f2e2213.jpg" alt="Interior de la floristería">
+                <p>🌸 Área de Exhibición</p>
+            </div>
+
+            <!-- Foto 3: Taller / Trabajo -->
+            <div class="foto-card">
+                <!-- Reemplaza "img/taller-local.jpg" por la ruta de tu foto -->
+                <img src="imagenes/cf9080a92565ae618615a3737eb84bd8.jpg" alt="Área de arreglos">
+                <p>💐 Taller de Preparación</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECCIÓN INFORMACIÓN + MAPA -->
+    <section class="contacto-seccion">
+        
+        <!-- Tarjeta de Información -->
+        <div class="info-card">
+            <h2>Información de Contacto</h2>
+
+            <!-- Dirección -->
+            <div class="item-info">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                    <h3>Dirección</h3>
+                    <p>Av. Principal #123, Colonia Centro<br>Ciudad, País</p>
+                </div>
+            </div>
+
+            <!-- Horarios -->
+            <div class="item-info">
+                <i class="fa-solid fa-clock"></i>
+                <div>
+                    <h3>Horario de Atención</h3>
+                    <p>Lunes a Sábado: 8:00 AM – 6:00 PM<br>Domingos: 9:00 AM – 2:00 PM</p>
+                </div>
+            </div>
+
+            <!-- Teléfono -->
+            <div class="item-info">
+                <i class="fa-solid fa-phone"></i>
+                <div>
+                    <h3>Teléfono / Celular</h3>
+                    <p>+504 9999-8888 / +504 2222-3333</p>
+                </div>
+            </div>
+
+            <!-- Correo -->
+            <div class="item-info">
+                <i class="fa-solid fa-envelope"></i>
+                <div>
+                    <h3>Correo Electrónico</h3>
+                    <p>contacto@aurafloral.com</p>
+                </div>
+            </div>
+
+            <!-- Botones de Acción -->
+            <div class="botones-contacto">
+                <a href="https://wa.me/+50493888288" target="_blank" class="btn-contacto btn-ws">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp Directo
+                </a>
+                <a href="https://maps.google.com" target="_blank" class="btn-contacto btn-mapa">
+                    <i class="fa-solid fa-route"></i> Cómo Llegar
+                </a>
+            </div>
+        </div>
+
+        <!-- Mapa interactivo de Google Maps -->
+        <div class="mapa-card">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3844.475960338734!2d-87.954128!3d15.539308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDMyJzIxLjUiTiA4N8KwNTcnMTQuOCJX!5e0!3m2!1ses!2s!4v1680000000000!5m2!1ses!2s" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+    </section>
+
+    <div class="regresar-container">
+        <a href="index.html" class="btn-regresar"><i class="fa-solid fa-arrow-left"></i> Volver a la pagina</a>
+    </div>
+
+</body>
+</html>

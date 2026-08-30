@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Floral | Flores Frescas y Detalles Únicos</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --pink-accent: #e28d9a;
+            --pink-hover: #d27886;
+            --pink-soft-bg: #fdf2f4;
+            --pink-light-badge: #f7d6dd;
+            --cream-bg: #faf7f5;
+            --text-dark: #3a2e30;
+            --text-muted: #807073;
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background-color: var(--cream-bg);
+        }
+
+        h1, h2, h3, h4, h5, .brand-logo {
+            font-family: var(--font-heading);
+        }
+
+        .top-promo-bar {
+            background-color: var(--pink-accent);
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 7px 0;
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+
+        .navbar-custom {
+            background-color: var(--cream-bg);
+            padding: 20px 0;
+        }
+
+        .brand-logo {
+            color: var(--text-dark);
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .brand-logo:hover {
+            color: var(--pink-accent);
+        }
+
+        .nav-link-custom {
+            color: #6c757d !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: none;
+            padding: 8px 22px !important;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-link-custom:hover {
+            color: var(--pink-accent) !important;
+        }
+
+        .nav-link-custom.active {
+            background-color: #fcebee;
+            color: #d88390 !important;
+        }
+
+        .hero-card {
+            background-color: var(--pink-soft-bg);
+            border-radius: 28px;
+            padding: 45px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(226, 141, 154, 0.08);
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            max-width: 420px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .btn-rose {
+            background-color: var(--pink-accent);
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 30px;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(226, 141, 154, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-rose:hover {
+            background-color: var(--pink-hover);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(226, 141, 154, 0.4);
+        }
+
+        .btn-outline-rose {
+            border: 2px solid var(--pink-accent);
+            color: var(--pink-accent);
+            background: transparent;
+            border-radius: 30px;
+            padding: 10px 26px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-rose:hover {
+            background-color: var(--pink-accent);
+            color: #ffffff;
+        }
+
+        .hero-carousel-img {
+            border-radius: 22px;
+            width: 100%;
+            height: 430px;
+            object-fit: cover;
+        }
+
+        .carousel-indicators-modern {
+            position: relative;
+            margin-top: 20px;
+            margin-bottom: 0;
+            justify-content: start;
+        }
+
+        .carousel-indicators-modern [data-bs-target] {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--pink-accent);
+            opacity: 0.3;
+            border: none;
+            margin-right: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-indicators-modern .active {
+            width: 28px;
+            border-radius: 10px;
+            opacity: 1;
+            background-color: var(--pink-accent);
+        }
+
+        .carousel-control-prev-custom, .carousel-control-next-custom {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 50%;
+            border: none;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .carousel-control-prev-custom { left: 15px; }
+        .carousel-control-next-custom { right: 15px; }
+
+        .carousel-control-prev-custom:hover, .carousel-control-next-custom:hover {
+            background: #ffffff;
+            color: var(--pink-accent);
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        .badge-card {
+            background-color: #ffffff;
+            border: 1px solid var(--pink-light-badge);
+            border-radius: 18px;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .badge-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .badge-card i {
+            font-size: 1.8rem;
+            color: var(--pink-accent);
+        }
+
+        .badge-card h6 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .badge-card p {
+            margin: 0;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .collection-card {
+            background-color: var(--pink-soft-bg);
+            border-radius: 22px;
+            padding: 20px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .collection-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 15px;
+        }
+
+        .collection-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .collection-price {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .btn-circle-arrow {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 38px;
+            height: 38px;
+            background-color: #ffffff;
+            color: var(--pink-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .btn-circle-arrow:hover {
+            background-color: var(--pink-accent);
+            color: #ffffff;
+        }
+
+        .story-banner {
+            background-color: var(--pink-soft-bg);
+            border-radius: 28px;
+            overflow: hidden;
+        }
+
+        .story-content {
+            padding: 50px;
+        }
+
+        .story-img {
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            object-fit: cover;
+        }
+
+        .occasion-item {
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .occasion-circle {
+            width: 82px;
+            height: 82px;
+            background-color: var(--pink-soft-bg);
+            border: 1px solid var(--pink-light-badge);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px auto;
+            color: var(--pink-accent);
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .occasion-item:hover .occasion-circle {
+            background-color: var(--pink-accent);
+            color: #ffffff;
+            transform: scale(1.06);
+        }
+
+        .occasion-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .newsletter-box {
+            background-color: var(--pink-soft-bg);
+            border: 1px solid var(--pink-light-badge);
+            border-radius: 24px;
+            padding: 35px;
+        }
+
+        .newsletter-input {
+            border-radius: 30px 0 0 30px;
+            border: 1px solid #f2cfd5;
+            padding: 12px 20px;
+            background-color: #ffffff;
+        }
+
+        .newsletter-input:focus {
+            box-shadow: none;
+            border-color: var(--pink-accent);
+        }
+
+        .newsletter-btn {
+            border-radius: 0 30px 30px 0;
+            background-color: var(--pink-accent);
+            color: #ffffff;
+            border: none;
+            padding: 12px 25px;
+            font-weight: 500;
+        }
+
+        .newsletter-btn:hover {
+            background-color: var(--pink-hover);
+            color: #ffffff;
+        }
+
+        .offcanvas-rose {
+            background-color: var(--pink-soft-bg) !important;
+            color: var(--text-dark);
+            width: 340px !important;
+        }
+
+        .guide-step-mini {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .guide-step-mini i {
+            font-size: 1.4rem;
+            margin-right: 15px;
+            color: var(--pink-accent);
+        }
+
+        .footer-custom {
+            background-color: #382c2e;
+            color: #ffffff;
+        }
+
+        .footer-custom .brand-logo,
+        .footer-custom h4,
+        .footer-custom h5,
+        .footer-custom p,
+        .footer-custom a,
+        .footer-custom small,
+        .footer-custom div,
+        .footer-custom i {
+            color: #ffffff !important;
+        }
+
+        .footer-custom a:hover {
+            color: var(--pink-accent) !important;
+        }
+
+        .footer-custom hr {
+            border-color: rgba(255, 255, 255, 0.2);
+            opacity: 1;
+        }
+
+        .btn-delete-resena {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: #d9534f;
+            opacity: 0.7;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+        }
+
+        .btn-delete-resena:hover {
+            opacity: 1;
+            color: #c9302c;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BANNER SUPERIOR -->
+    <div class="top-promo-bar">
+        <i class="bi bi-flower1 me-1"></i> Entregas el mismo día disponible realizando tu pedido antes de las 3:00 PM
+    </div>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container d-flex align-items-center justify-content-between">
+            
+            <div class="d-flex align-items-center">
+                <button class="btn me-3 p-0 border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral">
+                    <i class="bi bi-list fs-2 text-dark"></i>
+                </button>
+
+                <a class="brand-logo d-flex align-items-center gap-2" href="index.html">
+                    <img src="imagenes/WhatsApp Image 2026-08-03 at 2.41.23 PM.jpeg" alt="Aura Floral Logo" width="75" height="75" class="rounded-circle">
+                    <span>Aura Floral</span>
+                </a>
+            </div>
+
+            <div class="d-none d-lg-flex align-items-center gap-2">
+                <a class="nav-link-custom active" href="index.html"><i class="bi bi-house-door me-1"></i>Inicio</a>
+                <a class="nav-link-custom" href="proyectoparte1.html"><i class="bi bi-grid me-1"></i>Catálogo</a>
+                <a class="nav-link-custom" href="#seccion-resenas"><i class="bi bi-star me-1"></i>Reseñas</a>
+                <a class="nav-link-custom" href="contactoproyecto.html"><i class="bi bi-envelope me-1"></i>Contacto</a>
+                <a class="nav-link-custom" href="contactomasinfo.html"><i class="bi bi-info-circle me-1"></i>Más Información</a>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="container my-4">
+        <div class="hero-card">
+            <div class="row align-items-center">
+                
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h1 class="hero-title">LA BELLEZA<br>DE LO NATURAL<br>HECHA PARA TI</h1>
+                    <p class="hero-subtitle">Flores y detalles cuidadosamente diseñados para celebrar la vida, la naturaleza y cada momento especial.</p>
+                    <a href="proyectoparte1.html" class="btn btn-rose me-2">Ver Catálogo <i class="bi bi-flower2 ms-1"></i></a>
+                </div>
+
+                <div class="col-lg-6">
+                    <div id="heroModernCarousel" class="carousel slide carousel-fade position-relative" data-bs-ride="carousel">
+                        <div class="carousel-inner shadow-sm rounded-4">
+                            <div class="carousel-item active" data-bs-interval="4000">
+                                <img src="imagenes/bd65129c930339bd0f60ed7f228fbc53.jpg" alt="Ramo Tulipanes y Flores Frescas" class="hero-carousel-img">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="4000">
+                                <img src="imagenes/349ce245f9f9ef807a14462cf733b333.jpg" alt="Arreglos florales pastel" class="hero-carousel-img">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="4000">
+                                <img src="imagenes/a7775ea9ede61de7135da68c5e4782e0.jpg" alt="Detalles y regalos especiales" class="hero-carousel-img">
+                            </div>
+                        </div>
+
+                        <button class="carousel-control-prev-custom" type="button" data-bs-target="#heroModernCarousel" data-bs-slide="prev">
+                            <i class="bi bi-chevron-left"></i>
+                        </button>
+                        <button class="carousel-control-next-custom" type="button" data-bs-target="#heroModernCarousel" data-bs-slide="next">
+                            <i class="bi bi-chevron-right"></i>
+                        </button>
+
+                        <div class="carousel-indicators carousel-indicators-modern">
+                            <button type="button" data-bs-target="#heroModernCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#heroModernCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#heroModernCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section class="container my-5">
+        <div class="row g-3">
+            <div class="col-6 col-md-3">
+                <div class="badge-card">
+                    <i class="bi bi-truck"></i>
+                    <div>
+                        <h6>Entrega El Mismo Día</h6>
+                        <p>Pide antes de las 03:00 PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="badge-card">
+                    <i class="bi bi-flower3"></i>
+                    <div>
+                        <h6>Flores Frescas</h6>
+                        <p>Seleccionadas con amor</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="badge-card">
+                    <i class="bi bi-award"></i>
+                    <div>
+                        <h6>Floristas Expertos</h6>
+                        <p>Diseño profesional</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="badge-card">
+                    <i class="bi bi-heart"></i>
+                    <div>
+                        <h6>Felicidad Garantizada</h6>
+                        <p>Tu satisfacción primero</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COLECCIONES -->
+    <section class="container my-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold m-0" style="font-size: 1.8rem;">Explora Colecciones <i class="bi bi-flower1 ms-1" style="color: var(--pink-accent); font-size: 1.2rem;"></i></h2>
+            <a href="proyectoparte1.html" class="btn btn-outline-rose btn-sm">Ver Todo</a>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-6 col-md-3">
+                <div class="collection-card">
+                    <img src="imagenes/44b79f0dfc19a163ac2a1df592965192.jpg" alt="Ramos" class="collection-img">
+                    <h3 class="collection-title">RAMOS</h3>
+                    <p class="collection-price">Desde 500 Lps</p>
+                    <a href="Ramos.html" class="btn-circle-arrow"><i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="collection-card">
+                    <img src="imagenes/98f259a9778ff9c7497aaeaec62189ce.jpg" alt="Cajas Florales" class="collection-img">
+                    <h3 class="collection-title">CAJAS FLORALES</h3>
+                    <p class="collection-price">Desde 800.00 Lps</p>
+                    <a href="cajasflorales.html" class="btn-circle-arrow"><i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="collection-card">
+                    <img src="imagenes/ba5d6b630b16af9b92fb34d37d5489ae.jpg" alt="Plantas" class="collection-img">
+                    <h3 class="collection-title">LOCAL</h3>
+                    <p class="collection-price">Visita nuestro local</p>
+                    <a href="local.html" class="btn-circle-arrow"><i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="collection-card">
+                    <img src="imagenes/WhatsApp Image 2026-08-03 at 2.41.23 PM.jpeg" alt="Regalos Especiales" class="collection-img">
+                    <h3 class="collection-title">PROMOCIONES</h3>
+                    <p class="collection-price">Disfrutas de nuestras promociones</p>
+                    <a href="promociones.html" class="btn-circle-arrow"><i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HISTORIA -->
+    <section class="container my-5">
+        <div class="story-banner">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-6">
+                    <div class="story-content">
+                        <h2 class="fw-bold mb-3">FLORES QUE CUENTAN HISTORIAS HERMOSAS</h2>
+                        <p class="text-muted mb-4">Buscamos los mejores tallos y diseñamos con el corazón para llevar belleza, alegría y significado a cada uno de tus momentos especiales.</p>
+                        <a href="contactomasinfo.html" class="btn btn-outline-rose">Más Información <i class="bi bi-flower2 ms-1"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="imagenes/WhatsApp Image 2026-08-01 at 5.40.03 PM.jpeg" alt="Florista en taller" class="story-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OCASIONES -->
+    <section class="container my-5">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold m-0" style="font-size: 1.8rem;">Comprar Por Ocasión</h2>
+        </div>
+
+        <div class="row g-3 justify-content-center">
+            <div class="col-4 col-md-2">
+                <div class="occasion-item">
+                    <div class="occasion-circle"><i class="bi bi-cake2"></i></div>
+                    <div class="occasion-title">Cumpleaños</div>
+                </div>
+            </div>
+            <div class="col-4 col-md-2">
+                <div class="occasion-item">
+                    <div class="occasion-circle"><i class="bi bi-heart"></i></div>
+                    <div class="occasion-title">Aniversario</div>
+                </div>
+            </div>
+            <div class="col-4 col-md-2">
+                <div class="occasion-item">
+                    <div class="occasion-circle"><i class="bi bi-stars"></i></div>
+                    <div class="occasion-title">Felicidades</div>
+                </div>
+            </div>
+            <div class="col-4 col-md-2">
+                <div class="occasion-item">
+                    <div class="occasion-circle"><i class="bi bi-emoji-smile"></i></div>
+                    <div class="occasion-title">Agradecer</div>
+                </div>
+            </div>
+            <div class="col-4 col-md-2">
+                <div class="occasion-item">
+                    <div class="occasion-circle"><i class="bi bi-flower1"></i></div>
+                    <div class="occasion-title">Condolencias</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE RESEÑAS -->
+    <section id="seccion-resenas" class="container my-5 py-4">
+        <div class="text-center mb-4">
+            <span class="badge px-3 py-2 rounded-pill" style="background-color: var(--pink-light-badge); color: var(--text-dark); font-weight: 600;">OPINIONES DE NUESTROS CLIENTES</span>
+            <h2 class="fw-bold mt-2" style="font-size: 1.8rem;">Lo que dicen sobre Aura Floral 🌸</h2>
+            <p class="text-muted">Conoce las experiencias de quienes han regalado detalles con nosotros.</p>
+            
+            <button type="button" class="btn btn-rose btn-sm rounded-pill px-4 mt-1" data-bs-toggle="modal" data-bs-target="#modalResena">
+                <i class="bi bi-pencil-square me-1"></i> Escribir una Reseña
+            </button>
+        </div>
+
+        <!-- Carga de reseñas -->
+        <div class="row g-4" id="contenedor-resenas"></div>
+    </section>
+
+    <!-- MODAL ESCRIBIR RESEÑA -->
+    <div class="modal fade" id="modalResena" tabindex="-1" aria-labelledby="modalResenaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: 24px; border: 1px solid var(--pink-light-badge); background-color: #ffffff;">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="modalResenaLabel">Deja tu Opinión 🌸</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formNuevaResena" onsubmit="guardarResena(event)">
+                        <div class="mb-3">
+                            <label for="nombreUsuario" class="form-label fw-medium">Tu Nombre *</label>
+                            <input type="text" class="form-control" id="nombreUsuario" placeholder="Ej: Sofía Martínez" style="border-radius: 14px; border-color: var(--pink-light-badge);" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="calificacion" class="form-label fw-medium">Calificación *</label>
+                            <select class="form-select" id="calificacion" style="border-radius: 14px; border-color: var(--pink-light-badge);" required>
+                                <option value="5" selected>⭐⭐⭐⭐⭐ (5/5) Excelente</option>
+                                <option value="4">⭐⭐⭐⭐ (4/5) Muy bueno</option>
+                                <option value="3">⭐⭐⭐ (3/5) Bueno</option>
+                                <option value="2">⭐⭐ (2/5) Regular</option>
+                                <option value="1">⭐ (1/5) Malo</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="comentarioUsuario" class="form-label fw-medium">Tu Comentario *</label>
+                            <textarea class="form-control" id="comentarioUsuario" rows="3" placeholder="Cuéntanos qué te pareció el ramo, la atención o el envío..." style="border-radius: 14px; border-color: var(--pink-light-badge);" required></textarea>
+                        </div>
+
+                        <div class="text-end">
+                            <button type="button" class="btn btn-light rounded-pill px-3 me-1" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-rose rounded-pill px-4">Publicar Reseña</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <section class="container my-5">
+        <div class="newsletter-box">
+            <div class="row align-items-center">
+                <div class="col-md-5 mb-3 mb-md-0">
+                    <h4 class="fw-bold mb-1" style="color: var(--text-dark);">10% DE DESCUENTO EN TU PRIMERA COMPRA</h4>
+                    <p class="small mb-0 text-muted">Únete a nuestra comunidad floral y recibe ofertas exclusivas.</p>
+                </div>
+                <div class="col-md-7">
+                    <form class="d-flex" onsubmit="suscribirseWhatsApp(event)">
+                        <input type="email" id="correoSuscripcion" class="form-control newsletter-input" placeholder="Ingresa tu correo electrónico" required>
+                        <button class="btn newsletter-btn" type="submit">Suscribirme</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENÚ LATERAL -->
+    <div class="offcanvas offcanvas-start offcanvas-rose" tabindex="-1" id="menuLateral" aria-labelledby="menuLateralLabel">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title fw-bold d-flex align-items-center" id="menuLateralLabel">
+                <img src="imagenes/WhatsApp Image 2026-07-27 at 2.13.11 PM.jpeg" alt="Aura Floral Logo" width="35" height="35" class="me-2 rounded-circle">
+                Aura Floral
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+
+        <div class="offcanvas-body">
+            <div class="text-center mb-4 pt-2">
+                <i class="bi bi-bag-check display-6" style="color: var(--pink-accent);"></i>
+                <h5 class="fw-bold mt-2 mb-1" style="font-size: 1.1rem;">ASÍ FLORECE TU PEDIDO</h5>
+                <span class="badge bg-white text-dark px-2 py-1 rounded-pill border" style="font-size: 0.68rem;">GUÍA DE COMPRA • 1 SEMANA ANTICIPACIÓN</span>
+            </div>
+
+            <div class="guide-step-mini">
+                <i class="bi bi-flower2"></i>
+                <div>
+                    <h6 class="fw-bold mb-1">1. Elige Tu Ramo</h6>
+                    <p class="small text-muted mb-0">Explora el catálogo y selecciona tu favorito.</p>
+                </div>
+            </div>
+
+            <div class="guide-step-mini">
+                <i class="bi bi-send"></i>
+                <div>
+                    <h6 class="fw-bold mb-1">2. Envíanos Tu Pedido</h6>
+                    <p class="small text-muted mb-0">Especifícanos color de flores y cantidad requerida.</p>
+                </div>
+            </div>
+
+            <div class="guide-step-mini">
+                <i class="bi bi-palette"></i>
+                <div>
+                    <h6 class="fw-bold mb-1">3. Personalización</h6>
+                    <p class="small text-muted mb-0">Indícanos la nota, fecha y lugar de entrega.</p>
+                </div>
+            </div>
+
+            <div class="guide-step-mini">
+                <i class="bi bi-credit-card"></i>
+                <div>
+                    <h6 class="fw-bold mb-1">4. Confirmación y Pago</h6>
+                    <p class="small text-muted mb-0">Anticipo del 50%. Se liquida al entregar.</p>
+                </div>
+            </div>
+
+            <div class="guide-step-mini">
+                <i class="bi bi-box-seam"></i>
+                <div>
+                    <h6 class="fw-bold mb-1">5. Preparación y Entrega</h6>
+                    <p class="small text-muted mb-0">¡Preparamos tu arreglo y te avisamos cuando vaya en camino!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer-custom py-5">
+        <div class="container text-center text-md-start">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h4 class="brand-logo mb-3">Aura Floral</h4>
+                    <p class="small">Llevando sonrisas y momentos inolvidables en cada entrega.</p>
+                </div>
+
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3">Contacto Directo</h5>
+                    <p class="mb-2">
+                        <a href="https://wa.me/50493888288" target="_blank" class="text-decoration-none small">
+                            <i class="bi bi-whatsapp me-2"></i>+504 9999-9999
+                        </a>
+                    </p>
+                    <p class="mb-2 small">
+                        <i class="bi bi-envelope-fill me-2"></i>contacto@aurafloral.com
+                    </p>
+                    <p class="mb-0 small">
+                        <i class="bi bi-geo-alt-fill me-2"></i>San Pedro Sula, Honduras
+                    </p>
+                </div>
+
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3">Horario de Atención</h5>
+                    <p class="small mb-1">Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                    <p class="small mb-0">Sábados: 8:00 AM - 2:00 PM</p>
+                </div>
+            </div>
+
+            <hr class="my-4">
+            
+            <div class="text-center small">
+                &copy; 2026 Aura Floral. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- SCRIPT DE MANEJO DE RESEÑAS Y SUSCRIPCIÓN -->
+    <script>
+        function suscribirseWhatsApp(event) {
+            event.preventDefault();
+            const inputCorreo = document.getElementById('correoSuscripcion');
+            const correo = inputCorreo.value.trim();
+
+            if (!correo) return;
+
+            const numeroWhatsApp = "50493888288";
+            const mensaje = `Hola Aura Floral, deseo suscribirme para obtener mi 10% de descuento en mi primera compra. Mi correo es: ${correo}`;
+            const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+
+            window.open(url, '_blank');
+            inputCorreo.value = "";
+        }
+
+        const resenasPorDefecto = [
+            {
+                id: 'def-1',
+                nombre: "María Fernanda",
+                estrellas: 5,
+                comentario: "Pedí un ramo personalizado para el cumpleaños de mi mamá y le encantó. La presentación y las flores frescas fueron impecables.",
+                esUsuario: false
+            },
+            {
+                id: 'def-2',
+                nombre: "Alejandro G.",
+                estrellas: 5,
+                comentario: "Excelente atención al cliente por WhatsApp. Coordinamos la fecha y hora sin ningún problema. Muy puntuales.",
+                esUsuario: false
+            },
+            {
+                id: 'def-3',
+                nombre: "Laura B.",
+                estrellas: 4,
+                comentario: "Las flores duraron frescas más de una semana. La combinación de colores era exactamente como la de la foto del catálogo.",
+                esUsuario: false
+            }
+        ];
+
+        function obtenerEstrellasHTML(cantidad) {
+            let html = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= cantidad) {
+                    html += '<i class="bi bi-star-fill text-warning me-1"></i>';
+                } else {
+                    html += '<i class="bi bi-star text-muted me-1"></i>';
+                }
+            }
+            return html;
+        }
+
+        function obtenerIniciales(nombre) {
+            if (!nombre) return 'A';
+            const partes = nombre.trim().split(' ');
+            if (partes.length >= 2) {
+                return (partes[0].charAt(0) + partes[1].charAt(0)).toUpperCase();
+            }
+            return partes[0].charAt(0).toUpperCase();
+        }
+
+        function cargarResenas() {
+            let resenasGuardadas = JSON.parse(localStorage.getItem('aura_resenas')) || [];
+            let todasLasResenas = [...resenasGuardadas, ...resenasPorDefecto];
+
+            let contenedor = document.getElementById('contenedor-resenas');
+            if (!contenedor) return;
+
+            let html = '';
+            todasLasResenas.forEach(r => {
+                let iniciales = obtenerIniciales(r.nombre);
+                
+                let botonEliminar = r.esUsuario ? `
+                    <button class="btn-delete-resena" onclick="eliminarResena('${r.id}')" title="Eliminar mi reseña">
+                        <i class="bi bi-trash3-fill"></i>
+                    </button>
+                ` : '';
+
+                html += `
+                    <div class="col-md-4">
+                        <div class="card h-100 p-4 border-0 shadow-sm position-relative" style="border-radius: 22px; background-color: #ffffff; border: 1px solid var(--pink-light-badge) !important;">
+                            ${botonEliminar}
+                            <div class="mb-2 pe-4">
+                                ${obtenerEstrellasHTML(r.estrellas)}
+                            </div>
+                            <p class="text-muted flex-grow-1">"${r.comentario}"</p>
+                            <div class="d-flex align-items-center mt-3 pt-3 border-top">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center text-danger fw-bold me-3" style="width: 45px; height: 45px; background-color: var(--pink-soft-bg); font-size: 1rem;">
+                                    ${iniciales}
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">${r.nombre}</h6>
+                                    <small class="text-muted">Cliente Verificado</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            contenedor.innerHTML = html;
+        }
+
+        function guardarResena(event) {
+            event.preventDefault();
+
+            const campoNombre = document.getElementById('nombreUsuario');
+            const campoCalificacion = document.getElementById('calificacion');
+            const campoComentario = document.getElementById('comentarioUsuario');
+
+            const nombreIngresado = campoNombre.value.trim();
+            const estrellasIngresadas = parseInt(campoCalificacion.value);
+            const comentarioIngresado = campoComentario.value.trim();
+
+            if (!nombreIngresado || !comentarioIngresado) return;
+
+            const nuevaResena = {
+                id: 'res-' + Date.now(),
+                nombre: nombreIngresado,
+                estrellas: estrellasIngresadas,
+                comentario: comentarioIngresado,
+                esUsuario: true
+            };
+
+            let resenasGuardadas = JSON.parse(localStorage.getItem('aura_resenas')) || [];
+            resenasGuardadas.unshift(nuevaResena);
+
+            localStorage.setItem('aura_resenas', JSON.stringify(resenasGuardadas));
+
+            const modalElement = document.getElementById('modalResena');
+            const modalInstance = bootstrap.Modal.getInstance(modalElement);
+            if (modalInstance) modalInstance.hide();
+
+            document.getElementById('formNuevaResena').reset();
+            cargarResenas();
+
+            Swal.fire({
+                title: "¡Gracias por tu opinión!",
+                text: "Tu reseña ha sido publicada con éxito.",
+                icon: "success",
+                confirmButtonColor: '#e28d9a'
+            });
+        }
+
+        function eliminarResena(id) {
+            Swal.fire({
+                title: '¿Eliminar reseña?',
+                text: "Tu comentario se borrará permanentemente de la página.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#e28d9a',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let resenasGuardadas = JSON.parse(localStorage.getItem('aura_resenas')) || [];
+                    resenasGuardadas = resenasGuardadas.filter(r => r.id !== id);
+                    localStorage.setItem('aura_resenas', JSON.stringify(resenasGuardadas));
+                    
+                    cargarResenas();
+
+                    Swal.fire({
+                        title: 'Eliminada',
+                        text: 'La reseña ha sido borrada.',
+                        icon: 'success',
+                        confirmButtonColor: '#e28d9a'
+                    });
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', cargarResenas);
+    </script>
+
+</body>
+</html>

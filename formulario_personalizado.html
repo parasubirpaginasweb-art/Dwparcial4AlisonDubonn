@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Floral | Solicitud de Diseño Personalizado</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        :root {
+            --pink-bg: #fff0f3;            /* Fondo general de la página en rosa súper suave */
+            --pink-card-bg: #fce4ec;       /* Fondo tenue para badges o detalles */
+            --pink-pastel: #f4acb7;        /* Rosa pastel principal */
+            --pink-hover: #e891a0;         /* Rosa un poco más oscuro para el hover de botones */
+            --dark-text: #4a4443;          /* Texto principal tenue */
+            --muted-text: #9e9391;         /* Texto secundario */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--pink-bg);
+            color: var(--dark-text);
+        }
+
+        h1, h2, h3, h4, .brand-logo {
+            font-family: var(--font-heading);
+        }
+
+        .navbar-custom {
+            background-color: #ffffff;
+            border-bottom: 1px solid #f8bbd0;
+            padding: 15px 0;
+        }
+
+        .brand-logo {
+            color: var(--dark-text);
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .card-custom {
+            background-color: #ffffff;
+            border-radius: 20px;
+            border: 1px solid #f8bbd0;
+            box-shadow: 0 10px 30px rgba(244, 172, 183, 0.15);
+            padding: 40px;
+        }
+
+        .form-control, .form-select {
+            border-radius: 12px;
+            border: 1px solid #f8bbd0;
+            padding: 12px 16px;
+            background-color: #fffafc;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--pink-pastel);
+            box-shadow: 0 0 0 0.25rem rgba(244, 172, 183, 0.3);
+            background-color: #ffffff;
+        }
+
+        .badge-custom {
+            background-color: var(--pink-card-bg);
+            color: #c25975;
+            font-weight: 500;
+        }
+
+        .btn-custom {
+            background-color: var(--pink-pastel);
+            color: #ffffff;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: var(--pink-hover);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-custom {
+            border-color: var(--pink-pastel);
+            color: #c25975;
+        }
+
+        .btn-outline-custom:hover {
+            background-color: var(--pink-pastel);
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <nav class="navbar navbar-custom sticky-top">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="brand-logo d-flex align-items-center gap-2" href="proyectoparte1.html">
+                <img src="imagenes/WhatsApp Image 2026-08-03 at 2.41.23 PM.jpeg" alt="Logo" width="45" height="45" class="rounded-circle">
+                <span>Aura Floral</span>
+            </a>
+            <a href="proyectoparte1.html" class="btn btn-outline-custom rounded-pill btn-sm px-3">
+                <i class="bi bi-arrow-left me-1"></i> Volver al Catálogo
+            </a>
+        </div>
+    </nav>
+
+    <!-- FORMULARIO DE COTIZACIÓN -->
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card-custom">
+                    <div class="text-center mb-4">
+                        <span class="badge badge-custom px-3 py-2 rounded-pill">DISEÑO EXCLUSIVO</span>
+                        <h2 class="fw-bold mt-2">Cotización Personalizada</h2>
+                        <p class="text-muted">Completa tus preferencias para armar tu mensaje automático de WhatsApp.</p>
+                    </div>
+
+                    <form id="formPersonalizado" onsubmit="enviarSolicitud(event)">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="nombreCliente" class="form-label fw-medium">Nombre Completo</label>
+                                <input type="text" class="form-control" id="nombreCliente" placeholder="Ej: María López" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="telefonoCliente" class="form-label fw-medium">Teléfono / WhatsApp</label>
+                                <input type="tel" class="form-control" id="telefonoCliente" placeholder="Ej: 9999-9999" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="correoCliente" class="form-label fw-medium">Correo Electrónico (Opcional)</label>
+                                <input type="email" class="form-control" id="correoCliente" placeholder="ejemplo@correo.com">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="productoBase" class="form-label fw-medium">Arreglo de Referencia</label>
+                                <input type="text" class="form-control" id="productoBase" readonly>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="presupuesto" class="form-label fw-medium">Presupuesto Estimado (Lps)</label>
+                                <select class="form-select" id="presupuesto" required>
+                                    <option value="" selected disabled>Selecciona un rango</option>
+                                    <option value="500 - 1,000 Lps">500 - 1,000 Lps</option>
+                                    <option value="1,000 - 2,000 Lps">1,000 - 2,000 Lps</option>
+                                    <option value="Más de 2,000 Lps">Más de 2,000 Lps</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="fechaEntrega" class="form-label fw-medium">Fecha Deseada de Entrega</label>
+                                <input type="date" class="form-control" id="fechaEntrega" required>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="detallesDiseno" class="form-label fw-medium">Detalles de tu Diseño</label>
+                                <textarea class="form-control" id="detallesDiseno" rows="4" placeholder="Describe los colores, tipos de flores, empaque o dedicatoria especial que deseas incluir..." required></textarea>
+                            </div>
+
+                            <div class="col-12 text-center mt-4">
+                                <button type="submit" class="btn btn-custom w-100 fs-6">
+                                    <i class="bi bi-whatsapp me-2 fs-5"></i> Enviar por WhatsApp
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productoParam = urlParams.get('producto');
+            const inputProducto = document.getElementById('productoBase');
+
+            if (productoParam) {
+                inputProducto.value = decodeURIComponent(productoParam);
+            } else {
+                inputProducto.value = "Diseño Personalizado Libre";
+            }
+        });
+
+        function enviarSolicitud(event) {
+            event.preventDefault();
+
+            // 1. Número de WhatsApp receptivo
+            const numeroWhatsApp = "+50493888288"; 
+
+            // 2. Valores del formulario
+            const nombre = document.getElementById('nombreCliente').value;
+            const telefono = document.getElementById('telefonoCliente').value;
+            const correo = document.getElementById('correoCliente').value || "No especificado";
+            const producto = document.getElementById('productoBase').value;
+            const presupuesto = document.getElementById('presupuesto').value;
+            const fecha = document.getElementById('fechaEntrega').value;
+            const detalles = document.getElementById('detallesDiseno').value;
+
+            // 3. Estructura del mensaje de WhatsApp
+            const mensaje = ` NUEVA SOLICITUD DE DISEÑO PERSONALIZADO \n\n` +
+                            ` Cliente: ${nombre}\n` +
+                            ` Teléfono: ${telefono}\n` +
+                            ` Correo: ${correo}\n` +
+                            ` Referencia: ${producto}\n` +
+                            ` Presupuesto: ${presupuesto}\n` +
+                            ` Fecha de Entrega: ${fecha}\n\n` +
+                            ` Detalles del Diseño:\n${detalles}`;
+
+            // 4. Generación del enlace wa.me
+            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+
+            // 5. Confirmación con la alerta de SweetAlert en tono rosa
+            Swal.fire({
+                title: "¡Redirigiendo a WhatsApp!",
+                text: "Se abrirá WhatsApp con el resumen de tu solicitud para que nos lo envíes directamente.",
+                icon: "success",
+                confirmButtonColor: '#f4acb7',
+                confirmButtonText: 'Abrir WhatsApp'
+            }).then(() => {
+                window.open(urlWhatsApp, '_blank');
+            });
+        }
+    </script>
+</body>
+</html>
